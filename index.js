@@ -30,7 +30,7 @@ function gameLoop() {
     let player = engine.players[playerId];
     engine.movePlayer(playerId);
 
-    if (engine.players[playerId].score == engine.maxPlayers) {
+    if (engine.players[playerId].score == engine.gameWin) {
       gameStarted = false;
       io.emit('gameFinished');
       

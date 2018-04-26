@@ -7,7 +7,8 @@ const gameSizeY = 1900; // will be downscaled 5x to 480
 const playerSize = 100; // (downscaled to 20x20)
 const doubloonSize = 50
 const maxAccel = 10
-const maxPlayers = 3;
+const maxPlayers = 10;
+const gameWin = 10;
 
 function checkCollision(obj1, obj2) {
   return(Math.abs(obj1.x - obj2.x) <= playerSize && Math.abs(obj1.y - obj2.y) <= playerSize)
@@ -138,5 +139,6 @@ if (!this.navigator) { // super hacky thing to determine whether this is a node 
     doubloon: doubloon,
     shuffleDoubloon: shuffleDoubloon,
     maxPlayers: maxPlayers,
+    gameWin: gameWin,
   }
 }

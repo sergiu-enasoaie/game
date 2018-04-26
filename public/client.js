@@ -6,6 +6,7 @@
     var localDirection; // used to display accel direction
     var gameLoopVar;
     var enoughPlayers = false;
+    var isInGame = false;
 
     // register service worker
     if ('serviceWorker' in navigator) {
@@ -20,6 +21,7 @@
 
     // add event that will add the player on the list 
     join.addEventListener('click', function(event){
+      isInGame = true;
       enoughPlayers = false;
       document.getElementById('waitingContainer').style.display = 'block';
       document.getElementById('joinContainer').style.display = 'none';
@@ -28,10 +30,12 @@
     });
 
     socket.on('currentPlayers', (count) => {
+      if (!isInGame) return;
       if (document.getElementById('connected')) document.getElementById('connected').innerHTML = count;
     });
     
     socket.on('startGame', function(){
+      if (!isInGame) return;
       if (enoughPlayers) return;
       document.getElementById('waitingContainer').style.display = 'none';
       document.getElementById('gameContainer').style.display = 'block';
@@ -40,6 +44,7 @@
     });
 
     socket.on('enoughPlayers', function() {
+      if (!isInGame) return;
       enoughPlayers = true;
       document.getElementById('waitingContainer').querySelector('h3').innerText = 'The limit of maximum players was reached!';
       document.getElementById('waitingContainer').querySelector('span').innerText = 'Refresh and try to join again, maybe a spot is opened.';
@@ -47,13 +52,14 @@
 
     socket.on('gameStateUpdate', updateGameState);
     socket.on('gameFinished', () => {
+      if (!isInGame) return;
       if (enoughPlayers) {
         document.getElementById('waitingContainer').style.display = 'none';
         document.getElementById('gameStats').innerHTML = 'The game has finished, maybe next time!';
         return;
       }
       document.getElementById('gameContainer').style.display = 'none';
-      var theWinner = Object.keys(players).filter(playerId => playerId == socket.id && players[playerId].score == 3);
+      var theWinner = Object.keys(players).filter(playerId => playerId == socket.id && players[playerId].score == gameWin);
       if (theWinner.length === 1) {
         document.getElementById('gameStats').innerHTML = 'You\'ve won a shot, come in front :)';
       } else {
