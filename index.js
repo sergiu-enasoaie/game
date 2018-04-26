@@ -34,8 +34,10 @@ function gameLoop() {
       gameStarted = false;
       io.emit('gameFinished');
       
-      // clearInterval(gameInterval);
-      // clearInterval(updateInterval);
+      setTimeout(() => {
+        clearInterval(gameInterval);
+        clearInterval(updateInterval);
+      }, 2000)
     }
   })
 }
