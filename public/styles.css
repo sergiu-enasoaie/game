@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+}
+
+body {
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    height: inherit;
+    margin: 0;
+}
+
+h3 {
+    line-height: 20px;
+}
+
+button {
+    font-size: 20px;
+}
+
+p {
+    margin: 0;
+}
+
+#game {
+    background-color: lightblue;
+    border: 2px solid black;
+    margin: auto;
+}
+
+#gameContainer {
+    display: none;
+}
+
+#waitingContainer {
+    display: none;
+}
+
+#joinContainer,
+#gameContainer,
+#waitingContainer,
+#gameStats {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

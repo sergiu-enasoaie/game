@@ -1,0 +1,22 @@
+{
+    "name": "Shots and Node.js",
+    "short_name": "Shots and Node.js",
+    "description": "Shots and Node.js",
+    "start_url": "./index.html?utm=homescreen",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#0f4a73",
+    "icons": [
+        {
+            "src": "./public/images/logo-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./public/images/logo-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
