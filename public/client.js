@@ -52,11 +52,8 @@
         document.getElementById('gameStats').innerHTML = 'The game has finished, maybe next time!';
         return;
       }
-      console.log(players);
-      console.log(socket.id);
       document.getElementById('gameContainer').style.display = 'none';
       var theWinner = Object.keys(players).filter(playerId => playerId == socket.id && players[playerId].score == 3);
-      console.log(theWinner);
       if (theWinner.length === 1) {
         document.getElementById('gameStats').innerHTML = 'You\'ve won a shot, come in front :)';
       } else {
